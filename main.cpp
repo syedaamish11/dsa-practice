@@ -1,9 +1,10 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 #include <queue>
 #include <string>
 #include "include/lru_cache.hpp"
 #include "include/trie.hpp"
+#include "include/disjoint_set.hpp"
 
 // Algorithm 1: Sliding Window - Maximum Sum Subarray of Size K
 long long maxSubarraySum(const std::vector<int>& arr, int k) {
@@ -60,6 +61,8 @@ int main() {
     cache.put(3, "C"); // Should evict key 2
     if (!cache.get(2, val)) std::cout << "    Get key 2: Evicted (Expected: Not found)\n";
     if (cache.get(3, val)) std::cout << "    Get key 3: " << val << " (Expected: C)\n";
+    std::cout << "    Cache contains key 1: " << (cache.contains(1) ? "Yes" : "No") << "\n";
+    std::cout << "    Cache contains key 2: " << (cache.contains(2) ? "Yes" : "No") << "\n";
 
     // 2. Test Trie Autocomplete
     std::cout << "\n[2] Testing Trie Prefix Autocomplete:\n";
@@ -96,6 +99,18 @@ int main() {
     for (int i = 0; i < n; ++i) {
         std::cout << "      To Node " << i << ": " << distances[i] << "\n";
     }
+
+    // 5. Test Disjoint Set Union (DSU)
+    std::cout << "\n[5] Testing Disjoint Set Union (DSU / Union-Find):\n";
+    DisjointSet dsu(6); // 6 vertices: 0, 1, 2, 3, 4, 5
+    dsu.unite(0, 1);
+    dsu.unite(1, 2);
+    dsu.unite(3, 4);
+
+    std::cout << "    0 and 2 connected: " << (dsu.connected(0, 2) ? "Yes (Expected: Yes)" : "No") << "\n";
+    std::cout << "    0 and 3 connected: " << (dsu.connected(0, 3) ? "Yes" : "No (Expected: No)") << "\n";
+    std::cout << "    Total independent components: " << dsu.count_components() << " (Expected: 3)\n";
+    std::cout << "    Component size of node 0: " << dsu.component_size(0) << " (Expected: 3)\n";
 
     std::cout << "\nAll test suites completed successfully!\n";
     return 0;

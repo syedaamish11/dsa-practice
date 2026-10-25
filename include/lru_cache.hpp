@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <unordered_map>
 #include <list>
 #include <utility>
@@ -57,7 +57,20 @@ public:
         lookup[key] = items.begin();
     }
 
+    bool contains(const KeyType& key) const {
+        return lookup.find(key) != lookup.end();
+    }
+
     size_t size() const {
         return items.size();
+    }
+
+    bool empty() const {
+        return items.empty();
+    }
+
+    void clear() {
+        items.clear();
+        lookup.clear();
     }
 };
