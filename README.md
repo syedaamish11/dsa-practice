@@ -4,7 +4,7 @@
 [![Focus](https://img.shields.io/badge/Focus-Algorithms_%26_Complexity-blueviolet)](#)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A curated collection of modular, production-standard **Data Structures and Algorithms** implemented in modern C++ (C++17/20). Features include cache designs, disjoint set unions, graph pathfinding, prefix trees, and sliding-window patterns with time & space complexity annotations.
+A curated collection of modular, production-standard **Data Structures and Algorithms** implemented in modern C++ (C++17/20). Features include cache designs, disjoint set unions, graph pathfinding, prefix trees, dynamic programming, and sliding-window patterns with time & space complexity annotations.
 
 ---
 
@@ -17,6 +17,7 @@ A curated collection of modular, production-standard **Data Structures and Algor
 | **Disjoint Set Union (DSU)** (`disjoint_set.hpp`) | Graphs / Sets | $O(\alpha(N))$ Find & Unite (Inverse Ackermann) | $O(N)$ Components |
 | **Dijkstra's Algorithm** (`main.cpp`) | Graphs / Shortest Path | $O((V + E) \log V)$ | $O(V + E)$ |
 | **Sliding Window Max Sum** (`main.cpp`) | Array / Two Pointers | $O(N)$ Linear Time | $O(1)$ Constant |
+| **Kadane's Algorithm** (`main.cpp`) | Dynamic Programming / Array | $O(N)$ Linear Time | $O(1)$ Constant |
 
 ---
 

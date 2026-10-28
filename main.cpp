@@ -2,6 +2,7 @@
 #include <vector>
 #include <queue>
 #include <string>
+#include <algorithm>
 #include "include/lru_cache.hpp"
 #include "include/trie.hpp"
 #include "include/disjoint_set.hpp"
@@ -44,6 +45,18 @@ std::vector<int> dijkstra(int n, int source, const std::vector<std::vector<std::
         }
     }
     return dist;
+}
+
+// Algorithm 3: Kadane's Algorithm - Maximum Contiguous Subarray Sum
+long long kadaneMaxSubarray(const std::vector<int>& arr) {
+    if (arr.empty()) return 0;
+    long long max_so_far = arr[0];
+    long long current_max = arr[0];
+    for (size_t i = 1; i < arr.size(); ++i) {
+        current_max = std::max(static_cast<long long>(arr[i]), current_max + arr[i]);
+        max_so_far = std::max(max_so_far, current_max);
+    }
+    return max_so_far;
 }
 
 int main() {
@@ -111,6 +124,12 @@ int main() {
     std::cout << "    0 and 3 connected: " << (dsu.connected(0, 3) ? "Yes" : "No (Expected: No)") << "\n";
     std::cout << "    Total independent components: " << dsu.count_components() << " (Expected: 3)\n";
     std::cout << "    Component size of node 0: " << dsu.component_size(0) << " (Expected: 3)\n";
+
+    // 6. Test Kadane's Algorithm
+    std::cout << "\n[6] Testing Kadane's Algorithm (Max Contiguous Subarray):\n";
+    std::vector<int> kadane_nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+    std::cout << "    Array: [-2, 1, -3, 4, -1, 2, 1, -5, 4]\n";
+    std::cout << "    Max Subarray Sum: " << kadaneMaxSubarray(kadane_nums) << " (Expected: 6)\n";
 
     std::cout << "\nAll test suites completed successfully!\n";
     return 0;
